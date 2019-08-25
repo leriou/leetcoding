@@ -5,7 +5,7 @@ class Solution {
         double delta = 0.1d;
         double r = dx;
         while(Math.abs(dx - r * r) > delta) {
-            r = (x/r + r) / 2.0d;   
+            r = (dx / r + r) / 2.0d;   
         }
         return (int)r;
 	}

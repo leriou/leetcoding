@@ -8,8 +8,8 @@ func mySqrt(x int) int {
     var d float64 = 0.1
     var dx float64 = float64(x)
     r := dx
-    for math.Abs(dx - r*r) > d {
-        r = (float64(x) / r + r) / 2.0
+    for math.Abs(dx - r * r) > d {
+        r = (dx / r + r) / 2.0
     }
     return int(r)
 }
