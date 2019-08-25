@@ -4,7 +4,7 @@ impl Solution {
         for i in (0..nums.len()) {
              if (nums[i] != 0) {
                 nums.swap(i, pos);
-                pos+=1;
+                pos += 1;
              }
         }     
     }
