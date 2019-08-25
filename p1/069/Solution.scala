@@ -6,7 +6,7 @@ object Solution {
       var r = dx
       while ( {
         Math.abs(dx - r * r) > delta
-      }) r = (x / r + r) / 2.0d
+      }) r = (dx / r + r) / 2.0d
       r.toInt
     }
 }
