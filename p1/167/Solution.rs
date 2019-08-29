@@ -4,7 +4,7 @@ impl Solution {
         for (li, n) in numbers.iter().enumerate() {
             let s = target - n;
             while li < ri {
-                let rn:i32 = *numbers.get(ri ).unwrap();
+                let rn:i32 = numbers[ri];
                 if rn == s {
                     return vec![li as i32 + 1, ri as i32 + 1];
                 } else if rn > s {

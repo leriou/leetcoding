@@ -6,7 +6,7 @@ impl Solution {
         for (n, item) in nums.iter().enumerate() {
             let s:i32 = target - item;
             if maps.contains_key(&s) {
-                return vec![*maps.get(&s).unwrap() as i32, n as i32];
+                return vec![maps[&s] as i32, n as i32];
             }
             maps.insert(*item, n);
         }
