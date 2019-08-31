@@ -5,7 +5,7 @@ impl Solution {
         if len < 3 {
             return res_vec;
         }
-        let mut ms = nums.clone();
+        let mut ms = nums;
         ms.sort();
         for (i, _) in ms.iter().enumerate() {
             if ms[i] > 0 {
