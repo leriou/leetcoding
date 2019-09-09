@@ -5,14 +5,12 @@ impl Solution {
         if  height.len() == 0 {
             return 0;
         }
-        
-        // use 2 pointers 
         let mut water: i32   = 0;
         let mut l            = 0;
         let mut r            = height.len() -1;
         let mut min_bar: i32 = 0;
         
-        while l <a r {
+        while l < r {
             min_bar = cmp::min(height[l], height[r]);
             water = cmp::max(water, (r-l) as i32 * min_bar);
             while min_bar >= height[l] && l < r {
