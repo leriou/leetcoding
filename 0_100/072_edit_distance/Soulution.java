@@ -6,7 +6,7 @@ class Solution {
         for (; i < m + 1; i++) {
             d[i][0] = i; 
         }
-        for (; j < n + 1; j++) {
+        for (; j < n + 1 ; j++) {
             d[0][j] = j;
         }
         for (i = 1; i < m + 1; i++) {

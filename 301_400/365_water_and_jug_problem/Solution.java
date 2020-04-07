@@ -5,6 +5,6 @@ class Solution {
         return z % gcd(x,y) == 0; 
     }
     public int gcd(int a, int b){
-        return a == 0 ? b: gcd(b % a, a); 
+        return a == 0 ? b : gcd(b % a, a); 
     }
 }
