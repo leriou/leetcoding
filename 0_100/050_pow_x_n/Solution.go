@@ -1,6 +1,6 @@
 func myPow(x float64, n int) float64 {
-    if n < 0{
-        x = 1/ x
+    if n < 0 {
+        x = 1 / x
         n = -n
     }
     res := 1.0
