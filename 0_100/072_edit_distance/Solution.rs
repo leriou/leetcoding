@@ -24,7 +24,7 @@ impl Solution {
                 let l = dp[i-1][j] + 1;
                 let r = dp[i][j-1] + 1;
                 let mut lr = dp[i-1][j-1];
-                if word1.chars().nth(i-1).unwrap() != word2.chars().nth(j-1).unwrap() {
+                if word1.into_bytes()[i-1] != word2.into_bytes()[j-1] {
                     lr += 1;
                 }
                 dp[i][j] = minix(l, minix(r, lr));
