@@ -8,5 +8,3 @@ class Solution:
                 return [n, maps.get(s)]
             maps[i] = n
             n += 1
-        
-        
