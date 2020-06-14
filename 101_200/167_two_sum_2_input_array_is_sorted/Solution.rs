@@ -1,14 +1,14 @@
 impl Solution {
     pub fn two_sum(numbers: Vec<i32>, target: i32) -> Vec<i32> {
-        let mut ri = numbers.len() - 1;
-        for (li, n) in numbers.iter().enumerate() {
+        let mut i = numbers.len() - 1;
+        for (l, n) in numbers.iter().enumerate() {
             let s = target - n;
-            while li < ri {
-                let rn:i32 = numbers[ri];
-                if rn == s {
-                    return vec![li as i32 + 1, ri as i32 + 1];
-                } else if rn > s {
-                    ri -= 1;
+            while l < i {
+                let pos:i32 = numbers[i];
+                if pos == s {
+                    return vec![l as i32 + 1, i as i32 + 1];
+                } else if pos > s {
+                    i -= 1;
                 } else {
                     break;
                 }
