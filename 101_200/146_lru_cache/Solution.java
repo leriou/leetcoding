@@ -1,16 +1,16 @@
 public class LRUCache {
-  class Node {
-    int key;
-    int value;
-    Node prev;
-    Node next;
-  }
-  private void addNode(Node node) {
-    node.prev = head;
-    node.next = head.next;
-    head.next.prev = node;
-    head.next = node;
-  }
+    class Node {
+        int key;
+        int value;
+        Node prev;
+        Node next;
+    }
+    private void addNode(Node node) {
+        node.prev = head;
+        node.next = head.next;
+        head.next.prev = node;
+        head.next = node;
+    }
   private void removeNode(Node node){
     Node prev = node.prev;
     Node next = node.next;
