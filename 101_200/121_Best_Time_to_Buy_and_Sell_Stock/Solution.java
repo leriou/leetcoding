@@ -7,8 +7,7 @@ class Solution {
         if (l > 1) {
             while (i >= 0) {
                 m = Math.max(0, Math.max(m, rm - prices[i]));
-                rm = Math.max(rm, prices[i]);
-                i--;
+                rm = Math.max(rm, prices[i--]);
             }
         }
         return m;
