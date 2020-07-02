@@ -1,15 +1,14 @@
 impl Solution {
     pub fn max_profit(prices: Vec<i32>) -> i32 {
-        let mut max = 0i32;
-        for i in 0..prices.len() {
-            let mut left_max = 0i32;
-            let pos = i.min(prices.len());
-            for j in pos..prices.len() {
-                let delta = prices[j] - prices[i];
-                left_max = delta.max(0).max(left_max);
+        let (len, mut i, mut m, mut rm) = (prices.len(), (prices.len() - 1) as i32, 0i32, 0i32);
+        if len > 1 {
+            while i >= 0 {
+                let iu = i as usize;
+                m = m.max(0).max(rm - prices[iu]);
+                rm = rm.max(prices[iu]);
+                i -= 1;
             }
-            max = left_max.max(max);
         }
-        max
+        m
     }
 }
