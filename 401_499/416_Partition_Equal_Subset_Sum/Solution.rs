@@ -8,12 +8,11 @@ impl Solution {
         let (n, mut dp) = (nums.len(), vec![false; sum as usize + 1]);
         dp[0] = true;
         for i in 0..n {
-            let mut j = sum;
-            while j >= 0 {
+            for j in (0..=sum).rev() {
                 if j >= nums[i] {
-                    dp[j as usize] = dp[j as usize] || dp[j as usize - nums[i] as usize];
+                    let ju = j as usize;
+                    dp[ju] = dp[ju] || dp[ju - nums[i] as usize];
                 };
-                j -= 1;
             }
         }
         return dp[sum as usize];
