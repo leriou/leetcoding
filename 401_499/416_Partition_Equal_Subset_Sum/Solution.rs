@@ -4,7 +4,7 @@ impl Solution {
         if sum % 2 == 1 {
             return false;
         }
-        sum /= 2;
+        sum >>= 1;
         let (n, mut dp) = (nums.len(), vec![false; sum as usize + 1]);
         dp[0] = true;
         for i in 0..n {
