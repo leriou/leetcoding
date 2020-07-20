@@ -3,7 +3,7 @@ class Solution {
         int len = nums.length, sum = 0;
         for (int i: nums) sum += i;
         if (sum % 2 == 1) return false;
-        sum = sum /2;
+        sum >>= 1;
         boolean[] dp = new boolean[sum + 1];
         dp[0] = true;
         for (int i = 0; i < len; ++i) {
