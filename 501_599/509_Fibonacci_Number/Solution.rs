@@ -1,14 +1,14 @@
 impl Solution {
     pub fn fib(n: i32) -> i32 {
-        if n <= 1 {
+        if n < 2 {
             return n;
         }
-        let nu = n as usize;
-        let mut f = vec![0i32; nu + 1];
-        f[1] = 1;
-        for i in 2..=nu {
-            f[i] = f[i - 1] + f[i - 2];
+        let (mut pre, mut cur) = (0, 1);
+        for i in 2..=n {
+            let t = cur + pre;
+            pre = cur;
+            cur = t;
         }
-        return f[nu];
+        return cur;
     }
 }
