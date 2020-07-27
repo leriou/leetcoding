@@ -16,15 +16,15 @@
 // }
 impl Solution {
     pub fn reverse_list(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let (mut curr, mut prev) = (head, None);
-        while let Some(c) = curr {
-            prev = Some(
-                Box::new(ListNode {
-                    next: prev,
-                    val: c.val
-                })
-            );
-            curr = c.next;
+        if head.is_none() {
+            return None;
+        }
+        let (mut prev, mut curr): (Option<Box<ListNode>>, Option<Box<ListNode>>) = (None, head);
+        while curr.is_some() {
+            let mut node = curr.take().unwrap();
+            curr = node.next;
+            node.next = prev;
+            prev = Some(node);
         }
         prev
     }
