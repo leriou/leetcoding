@@ -26,12 +26,6 @@ impl LinkedList {
         let prev = node.borrow().prev.as_ref().map(|a| Rc::clone(a));
         let next = node.borrow().next.as_ref().map(|a| Rc::clone(a));
         match (&prev, &next) {
-            (None, None) => {
-                // this is the only node in list, so do nothng
-            }
-            (Some(_), None) => {
-                // this node is already the head, so do nothing
-            }
             (None, Some(next)) => {
                 // this is the tail, move it to front
                 node.borrow_mut().next = None;
@@ -47,7 +41,6 @@ impl LinkedList {
             (Some(prev), Some(next)) => {
                 node.borrow_mut().next = None;
                 node.borrow_mut().prev = None;
-
                 prev.borrow_mut().next = Some(Rc::clone(next));
                 next.borrow_mut().prev = Some(Rc::clone(prev));
 
@@ -56,6 +49,7 @@ impl LinkedList {
                 node.borrow_mut().prev = Some(Rc::clone(prev_head));
                 self.head = Some(Rc::clone(node));
             }
+            _ => {}
         }
     }
 
