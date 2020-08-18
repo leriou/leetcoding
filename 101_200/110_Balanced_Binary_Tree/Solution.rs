@@ -22,15 +22,16 @@ impl Solution {
     pub fn is_balanced(root: Option<Rc<RefCell<TreeNode>>>) -> bool {
         match root {
             Some(node) => {
-                let p = node.clone().as_ptr();
+                let p = node.as_ptr();
                 unsafe {
-                    let left = (*p).left.as_ref().map(|x| (*x).clone());
-                    let right = (*p).right.as_ref().map(|x| (*x).clone());
-                    Self::is_balanced(left)
-                        && Self::is_balanced(right)
-                        && (Self::helper((*p).left.as_ref().map(|x| (*x).clone()))
-                            - Self::helper((*p).right.as_ref().map(|x| (*x).clone())))
-                        .abs() <= 1
+                    let left_ref = (*p).left.as_ref();
+                    let right_ref = (*p).right.as_ref();
+                    Self::is_balanced(left_ref.map(|x| x.clone()))
+                        && Self::is_balanced(right_ref.map(|x| x.clone()))
+                        && (Self::helper(left_ref.map(|x| x.clone()))
+                            - Self::helper(right_ref.map(|x| x.clone())))
+                        .abs()
+                            <= 1
                 }
             }
             None => true,
@@ -41,8 +42,8 @@ impl Solution {
             Some(node) => {
                 let p = node.as_ptr();
                 unsafe {
-                    let left = (*p).left.as_ref().map(|x| (*x).clone());
-                    let right = (*p).right.as_ref().map(|x| (*x).clone());
+                    let left = (*p).left.as_ref().map(|x| x.clone());
+                    let right = (*p).right.as_ref().map(|x| x.clone());
                     Self::helper(left).max(Self::helper(right)) + 1
                 }
             }
