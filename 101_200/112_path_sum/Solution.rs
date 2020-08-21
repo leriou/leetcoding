@@ -26,13 +26,11 @@ impl Solution {
                     node.borrow().left.as_ref().map(|x| x.clone()),
                     node.borrow().right.as_ref().map(|x| x.clone()),
                 ) {
-                    (Some(left), Some(right)) => {
-                        Self::has_path_sum(Some(left), sum - node.borrow().val)
-                            || Self::has_path_sum(Some(right), sum - node.borrow().val)
-                    }
-                    (None, Some(right)) => Self::has_path_sum(Some(right), sum - node.borrow().val),
-                    (Some(left), None) => Self::has_path_sum(Some(left), sum - node.borrow().val),
                     (None, None) => sum == node.borrow().val,
+                    (left, right) => {
+                        Self::has_path_sum(left, sum - node.borrow().val)
+                            || Self::has_path_sum(right, sum - node.borrow().val)
+                    }
                 }
             }
             None => false,
