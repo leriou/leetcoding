@@ -3,13 +3,9 @@ impl Solution {
         if height.len() == 0 {
             return 0;
         }
-        let mut water: i32 = 0;
-        let mut l = 0;
-        let mut r = height.len() - 1;
-        let mut min_bar: i32 = 0;
-
+        let (mut water, mut l, mut r) = (0, 0, height.len() - 1);
         while l < r {
-            min_bar = height[l].min(height[r]);
+            let min_bar = height[l].min(height[r]);
             water = water.max((r - l) as i32 * min_bar);
             while min_bar >= height[l] && l < r {
                 l += 1;
@@ -18,6 +14,6 @@ impl Solution {
                 r -= 1
             }
         }
-        return water;
+        water
     }
 }

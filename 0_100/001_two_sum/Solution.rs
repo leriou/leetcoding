@@ -2,7 +2,6 @@ use std::collections::HashMap;
 
 impl Solution {
     pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-        let empty_vec = vec![];
         if nums.len() >= 2 {
             let mut maps: HashMap<i32, usize> = HashMap::with_capacity(nums.len());
             for (n, item) in nums.iter().enumerate() {
@@ -13,6 +12,6 @@ impl Solution {
                 maps.insert(*item, n);
             }   
         }
-        empty_vec
+        vec![]
     }
 }

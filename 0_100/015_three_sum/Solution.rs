@@ -1,40 +1,37 @@
 impl Solution {
-    pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
-        let mut res_vec: Vec<Vec<i32>> = vec![];
+    pub fn three_sum(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut ans: Vec<Vec<i32>> = vec![];
         let len = nums.len();
-        if len < 3 {
-            return res_vec;
-        }
-        let mut ms = nums;
-        ms.sort();
-        for (i, _) in ms.iter().enumerate() {
-            if ms[i] > 0 {
-                break;
-            }
-            if i > 0 && ms[i] == ms[i - 1] {
-                continue;
-            }
-            let mut li = i + 1;
-            let mut ri = len - 1;
-            while li < ri {
-                let sum = ms[i] + ms[li] + ms[ri];
-                if sum == 0 {
-                    res_vec.push(vec![ms[i], ms[li], ms[ri]]);
-                    while li < ri && ms[li] == ms[li + 1] {
+        if len >= 3 {
+            nums.sort_unstable();
+            for i in 0..len {
+                if nums[i] > 0 {
+                    break;
+                }
+                if i > 0 && nums[i] == nums[i - 1] {
+                    continue;
+                }
+                let (mut li, mut ri) = (i + 1, len - 1);
+                while li < ri {
+                    let sum = nums[i] + nums[li] + nums[ri];
+                    if sum == 0 {
+                        ans.push(vec![nums[i], nums[li], nums[ri]]);
+                        while li < ri && nums[li] == nums[li + 1] {
+                            li += 1;
+                        }
+                        while li < ri && nums[ri] == nums[ri - 1] {
+                            ri -= 1;
+                        }
                         li += 1;
-                    }
-                    while li < ri && ms[ri] == ms[ri - 1] {
+                        ri -= 1;
+                    } else if sum < 0 {
+                        li += 1;
+                    } else if sum > 0 {
                         ri -= 1;
                     }
-                    li += 1;
-                    ri -= 1;
-                } else if sum < 0 {
-                    li += 1;
-                } else if sum > 0 {
-                    ri -= 1;
                 }
             }
         }
-        return res_vec;
+        ans
     }
 }
