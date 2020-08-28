@@ -1,4 +1,4 @@
 class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
-       return [i for i in bin(x^y)][2:].count('1')
+       return len([i for i in bin(x^y) if i == '1'])
         
