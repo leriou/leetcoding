@@ -8,9 +8,9 @@ var (
 
 func solveNQueens(n int) [][]string {
 	row = n
-	for i := 0; i < n; i++ {
-		t := make([]string, n)
-		for j := 0; j < n; j++ {
+	for i := 0; i < row; i++ {
+		t := make([]string, row)
+		for j := 0; j < row; j++ {
 			t[j] = "."
 		}
 		matrix = append(matrix, t)
