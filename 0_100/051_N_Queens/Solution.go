@@ -1,28 +1,39 @@
-import (
-	"strings"
+import "strings"
+
+var (
+	ans    = make([][]string, 0)
+	matrix = make([][]string, 0)
+	row    = 0
 )
 
 func solveNQueens(n int) [][]string {
-	ans := make([][]string, 1)
-	matrix := make([][]int, n+1)
-	for i := 0; i < n+1; i++ {
-		matrix[i] = make([]int, n+1)
+	row = n
+	for i := 0; i < n; i++ {
+		t := make([]string, n)
+		for j := 0; j < n; j++ {
+			t[j] = "."
+		}
+		matrix = append(matrix, t)
 	}
-	return trail(1, n, matrix, ans)[1:]
+	trail(0)
+	return ans
 }
-func trail(i, n int, matrix [][]int, ans [][]string) [][]string {
-	if i > n {
-		ans = addMatrix(n, matrix, ans)
+func trail(i int) {
+	if i >= row {
+		t := make([]string, 0)
+		for idx := 0; idx < row; idx++ {
+			t = append(t, strings.Join(matrix[idx], ""))
+		}
+		ans = append(ans, t)
 	} else {
-		for j := 1; j <= n; j++ {
-			matrix[i][j] = 1
-			if isValid(matrix, n, i, j) {
-				ans = trail(i+1, n, matrix, ans)
+		for j := 0; j < row; j++ {
+			matrix[i][j] = "Q"
+			if isValid(i, j) {
+				trail(i + 1)
 			}
-			matrix[i][j] = 0
+			matrix[i][j] = "."
 		}
 	}
-	return ans
 }
 func abs(i int) int {
 	if i > 0 {
@@ -30,27 +41,11 @@ func abs(i int) int {
 	}
 	return -i
 }
-func addMatrix(n int, matrix [][]int, ans [][]string) [][]string {
-	line := make([]string, 1)
-	for i := 1; i < n+1; i++ {
-		s := ""
-		for j := 1; j < n+1; j++ {
-			if matrix[i][j] == 1 {
-				s += "Q"
-			} else {
-				s += "."
-			}
-		}
-		line = append(line, strings.TrimSpace(s))
-	}
-	ans = append(ans, line[1:])
-	return ans
-}
-func isValid(matrix [][]int, n, i, j int) bool {
-	for m := 1; m < i; m++ {
-		for p := 1; p <= n; p++ {
-			if matrix[m][p] == 1 {
-				if j == p || abs(j-p) == abs(i-m) {
+func isValid(i, j int) bool {
+	for m := 0; m < i; m++ {
+		for p := 0; p < row; p++ {
+			if j == p || abs(j-p) == abs(i-m) || (i+j) == (m+p) {
+				if matrix[m][p] == "Q" {
 					return false
 				}
 			}
