@@ -1,12 +1,14 @@
 import "strings"
 
 var (
-	ans    = make([][]string, 0)
-	matrix = make([][]string, 0)
-	row    = 0
+	ans   [][]string
+	matrix [][]string
+	row    int
 )
 
 func solveNQueens(n int) [][]string {
+    ans    = make([][]string, 0)
+    matrix = make([][]string, 0)
 	row = n
 	for i := 0; i < row; i++ {
 		t := make([]string, row)
