@@ -1,8 +1,4 @@
 class Solution:
-    N = -1
-    maze = []
-    ans = []
-
     def _init_(self):
         for i in range(0, self.N):
             t = []
@@ -12,6 +8,8 @@ class Solution:
 
     def solveNQueens(self, n: int) -> List[List[str]]:
         self.N = n
+        self.maze = []
+        self.ans = []
         self._init_()
         self.trail(0)
         return self.ans
