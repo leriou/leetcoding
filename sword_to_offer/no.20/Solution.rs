@@ -21,15 +21,15 @@ impl Solution {
         let legal_state = [2,3,5,8,9];
         let mut state = 0_i32;
         for i in s.chars() {
-            let str = match i {
-                '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'=> "number",
+            let flag = match i {
+                '0'..='9'=> "number",
                 '+' | '-' => "sign",
                 '.' => ".",
                 ' ' => "blank",
                 'E' | 'e' => "exp",
                 _ => "other",
             };
-            state = trans_table[state as usize][cols[str]];
+            state = trans_table[state as usize][cols[flag]];
             if state == -1 {
                 return false;
             }
