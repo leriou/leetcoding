@@ -11,7 +11,6 @@ class Solution {
                 h = height[right];
                 --right;
             }
-            
             area = Math.max(area, l * h);
         }
         return area;
