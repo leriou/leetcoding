@@ -1,14 +1,9 @@
 class Solution:
     def _init_(self):
-        for i in range(0, self.N):
-            t = []
-            for j in range(0, self.N):
-                t.append(".")
-            self.maze.append(t)
+        self.maze = [["." for j in range(0, self.N)] for i in range(0,self.N)]
 
     def solveNQueens(self, n: int) -> List[List[str]]:
         self.N = n
-        self.maze = []
         self.ans = []
         self._init_()
         self.trail(0)
@@ -19,10 +14,10 @@ class Solution:
             self.ans.append(["".join(i) for i in self.maze])
         else:
             for i in range(0, self.N):
-                self.maze[n][i] = "Q"
                 if self.is_valid(n, i):
+                    self.maze[n][i] = "Q"
                     self.trail(n+1)
-                self.maze[n][i] = "."
+                    self.maze[n][i] = "."
 
     def is_valid(self, x, y):
         for i in range(0, x):
