@@ -15,16 +15,13 @@ class Solution:
         return ans
     
     def backtrace(self, root, arr, ans):
+        arr.append(str(root.val))
         if not root.left and not root.right:
-            arr.append(str(root.val))
             ans.append("->".join(arr))
         else:
-            arr.append(str(root.val))
             if root.left:
                 self.backtrace(root.left, arr, ans)
                 arr.pop()
             if root.right:
                 self.backtrace(root.right, arr, ans)
                 arr.pop()
-            
-            
